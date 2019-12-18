@@ -1,17 +1,44 @@
 
 package com.moonsolid.sc;
-
+import java.sql.Date;
+import java.util.Scanner;
 public class App {
- 
-
     public static void main(String[] args) {
-        System.out.println("번호: 1");
-        System.out.println("수업명: 자바 프로젝트 실습");
-        System.out.println("설명: 자바 프로젝트를 통한 자바 언어 활용법 익히기");
-        System.out.println("시작일: 2019-01-02");
-        System.out.println("종료일: 2019-05-28");
-        System.out.println("총수업시간: 1000 시간");
-        System.out.println("일수업시간: 8 시간");
+      Scanner keyboard = new Scanner(System.in);
+      
+      System.out.print("번호? ");
+      int no = keyboard.nextInt();
+      
+      keyboard.nextLine();
+      
+      System.out.print("영화명? ");
+      String movieTitle = keyboard.nextLine();
+      
+      System.out.print("장르? ");
+      String genre = keyboard.nextLine();
+      
+      System.out.print("개봉일? ");
+      Date openDate = Date.valueOf(keyboard.nextLine());
+      
+      System.out.print("러닝타임? ");
+      int runningTime = keyboard.nextInt();
+      
+      keyboard.nextLine();
+      
+      System.out.print("줄거리? ");
+      String summary = keyboard.nextLine();
+     
+      System.out.println();
+      
+      keyboard.close();
+      
+      System.out.printf("번호: %s\n", no);
+      System.out.printf("영화명: %s\n", movieTitle);
+      System.out.printf("장르: %s\n", genre);   
+      System.out.printf("개봉일:  %s\n", openDate);
+      System.out.printf("러닝타임: %s 분\n", runningTime);
+      System.out.printf("줄거리: %s\n", summary);
+          
     }
 }
 
