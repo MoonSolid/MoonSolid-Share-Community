@@ -4,11 +4,9 @@
 package com.moonsolid.sc;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
+  public static void main(String[] args) {
+    System.out.println("오늘도 안녕하세요!");
+  
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
     }
 }
