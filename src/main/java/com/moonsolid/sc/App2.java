@@ -1,63 +1,52 @@
-package com.bitcamp.myproject;
+package com.moonsolid.sc;
 
-import java.sql.Date;
 import java.util.Scanner;
 
 public class App2 {
   public static void main(String[] args) {
-    Scanner keyboard = new Scanner(System.in);
-    int[] no = new int[10000];
-    String[] name = new String[10000];
-    String[] email = new String[10000];
-    String[] password = new String[10000];
-    String[] photo = new String[10000];
-    String[] tel = new String[10000];
-    Date[] registerDate = new Date[10000];
-    int count = 0;
+	 Scanner keyboard = new Scanner(System.in);
+	 
+	 System.out.print("π¯»£? ");
+	 int no = keyboard.nextInt();
+	 keyboard.nextLine();
+	 
+	 System.out.print("¿Ã∏ß? ");
+	 String name = keyboard.nextLine();
+	 
+	 System.out.print("¿Ã∏ﬁ¿œ? ");
+	 String email = keyboard.nextLine();
+	 
+	 System.out.print("æœ»£? ");
+	 String password = keyboard.nextLine();
+	 
+	 System.out.print("ªÁ¡¯? ");
+	 String photo = keyboard.nextLine();
+	 
+	 System.out.print("¿¸»≠? ");
+	 String tel = keyboard.nextLine();
+	 
+	 System.out.print("∞°¿‘¿œ? ");
+	 String registeredDate = keyboard.nextLine();
+	 
+	 keyboard.close();
+	 
+	 System.out.println();
 
-    for (int i = 0; i < 10000; i++) {
-      System.out.print("Î≤àÌò∏? ");
-      no[i] = Integer.parseInt(keyboard.nextLine());
-
-      System.out.print("Ïù¥Î¶Ñ? ");
-      name[i] = keyboard.nextLine();
-
-      System.out.print("Ïù¥Î©îÏùº? ");
-      email[i] = keyboard.nextLine();
-
-      System.out.print("ÏïîÌò∏? ");
-      password[i] = keyboard.nextLine();
-
-      System.out.print("ÏÇ¨ÏßÑ? ");
-      photo[i] = keyboard.nextLine();
-
-      System.out.print("Ï†ÑÌôî? ");
-      tel[i] = keyboard.nextLine();
-
-      Date today = new Date(System.currentTimeMillis());
-      registerDate[i] = today;
-      count++;
-      
-      System.out.println("Í≥ÑÏÜç Îì±Î°ùÌïòÏãúÍ≤†ÏäµÎãàÍπå?(Y/n)");
-      String answer = keyboard.nextLine();
-
-      if (!answer.equalsIgnoreCase("y")) {
-        break;
-      }
-    }
-    keyboard.close();
-    
-    System.out.println();
-
-    for(int i = 0; i< count; i++) {
-    System.out.printf("Î≤àÌò∏: %d\n", no[i]);
-    System.out.printf("Ïù¥Î¶Ñ: %s\n", name[i]);
-    System.out.printf("Ïù¥Î©îÏùº: %s\n", email[i]);
-    System.out.printf("ÏïîÌò∏: %s\n", password[i]);
-    System.out.printf("ÏÇ¨ÏßÑ: %s\n", photo[i]);
-    System.out.printf("Ï†ÑÌôî: %s\n", tel[i]);
-    System.out.printf("Í∞ÄÏûÖÏùº: %s\n", registerDate[i]);
-    System.out.println();
-    }
+	 System.out.printf("π¯»£¥¬ %d\n", no);
+	 System.out.printf("¿Ã∏ß¿∫ %s\n", name);
+	 System.out.printf("¿Ã∏ﬁ¿œ¿∫ %s\n", email);
+	 System.out.printf("æœ»£¥¬ %s\n", password);
+	 System.out.printf("ªÁ¡¯¿∫ %s\n", photo);
+	 System.out.printf("¿¸»≠¥¬ %s\n", tel);
+	 System.out.printf("∞°¿œ¿œ¿∫ %s\n", registeredDate);
+	 
+	 
   }
 }
+
+
+
+
+
+
+

@@ -1,76 +1,78 @@
-
-package com.bitcamp.myproject;
+package com.moonsolid.sc;
 
 import java.sql.Date;
 import java.util.Scanner;
 
 public class App {
-  public static void main(String[] args) {
-    Scanner keyboard = new Scanner(System.in);
-    int[] no = new int[10000];
-    String[] movieTitle = new String[10000];
-    String[] genre = new String[10000];
-    String[] summary = new String[10000];
-    String[] director = new String[10000];
-    String[] actor = new String[10000];
-    String[] kmrb = new String[10000];
-    Date[] openDate = new Date[10000];
-    int[] runningTime = new int[10000];
-    int count = 0;
-
-    for (int i = 0; i < 10000; i++) {
-      System.out.print("ë²ˆí˜¸? ");
-      no[i] = keyboard.nextInt();
-
-      keyboard.nextLine();
-
-      System.out.print("ì˜í™”ëª…? ");
-      movieTitle[i] = keyboard.nextLine();
-
-      System.out.print("ìž¥ë¥´? ");
-      genre[i] = keyboard.nextLine();
-
-      System.out.print("ì¤„ê±°ë¦¬? ");
-      summary[i] = keyboard.nextLine();
-
-      System.out.print("ê°ë…? ");
-      director[i] = keyboard.nextLine();
-
-      System.out.print("ì¶œì—°? ");
-      actor[i] = keyboard.nextLine();
-
-      System.out.print("ê´€ëžŒë“±ê¸‰");
-      kmrb[i] = keyboard.nextLine();
-
-      System.out.print("ê°œë´‰ì¼? ");
-      openDate[i] = Date.valueOf(keyboard.nextLine());
-
-      System.out.print("ëŸ¬ë‹íƒ€ìž„? ");
-      runningTime[i] = keyboard.nextInt();
-      keyboard.nextLine();
-      count++;
-      System.out.print("ê³„ì† ìž…ë ¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/n)");
-      String answer = keyboard.nextLine();
-
-      if (!answer.equalsIgnoreCase("y")) {
-        break;
-      }
-    }
-    keyboard.close();
-    System.out.println();
-    for (int i = 0; i < count; i++) {
-      System.out.printf("ë²ˆí˜¸: %s\n", no[i]);
-      System.out.printf("ì˜í™”ëª…: %s\n", movieTitle[i]);
-      System.out.printf("ìž¥ë¥´: %s\n", genre[i]);
-      System.out.printf("ì¤„ê±°ë¦¬: %s\n", summary[i]);
-      System.out.printf("ê°ë…: %s\n", director[i]);
-      System.out.printf("ì¶œì—°: %s\n", actor[i]);
-      System.out.printf("ê´€ëžŒë“±ê¸‰: %s\n", kmrb[i]);
-      System.out.printf("ê°œë´‰ì¼:  %s\n", openDate[i]);
-      System.out.printf("ëŸ¬ë‹íƒ€ìž„: %s ë¶„\n", runningTime[i]);
-      System.out.println();
-    }
-  }
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		class Lesson {
+			int no;
+			String title;
+			String description;
+			Date startDate;
+			Date endDate;
+			int totalHours;
+			int dayHours;
+		}
+		
+		final int SIZE = 100;
+		
+		Lesson[] lessons = new Lesson[SIZE];
+		
+		int count = 0;
+		
+		for (int i = 0; i < SIZE; i++) {
+			count ++;
+			
+			Lesson lesson = new Lesson();
+			
+			System.out.print("¹øÈ£? ");
+			lesson.no = keyboard.nextInt();
+			keyboard.nextLine();
+			
+			System.out.print("¼ö¾÷¸í? ");
+			lesson.title = keyboard.nextLine();
+			
+			System.out.print("¼³¸í? ");
+			lesson.description = keyboard.nextLine();
+			
+			System.out.print("½ÃÀÛÀÏ? ");
+			lesson.startDate = Date.valueOf(keyboard.next()); 
+			
+			System.out.print("Á¾·áÀÏ? ");
+			lesson.endDate = Date.valueOf(keyboard.next());
+			
+			System.out.print("ÃÑ¼ö¾÷½Ã°£? ");
+			lesson.totalHours = keyboard.nextInt();
+			keyboard.nextLine();
+			
+			System.out.print("ÀÏ¼ö¾÷½Ã°£? ");
+			lesson.dayHours = keyboard.nextInt();
+			keyboard.nextLine();
+			
+			lessons[i] = lesson;
+			
+			
+			
+		}
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

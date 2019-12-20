@@ -1,50 +1,63 @@
-package com.bitcamp.myproject;
+package com.moonsolid.sc;
 
 import java.sql.Date;
 import java.util.Scanner;
 
 public class App3 {
-  public static void main(String[] args) {
-    Scanner keyboard = new Scanner(System.in);
-    int[] no = new int[10000];
-    String[] movieTitle = new String[10000];
-    String[] review = new String[10000];
-    Date[] updateDay = new Date[10000];
-    int count = 0;
+	
+	static final int SIZE = 5734;
+	static Board[] board = new Board[SIZE];
+	static int count = 0;
+	
+	public static void main(String[] args) {
 
-    for (int i = 0; i < 10000; i++) {
-      System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboard.nextLine());
+		inputBoards();
+		
+        System.out.println();		
+		
+		printBoards();
+		
+		
+	}
+	static void InputBoard() {
+		Scanner keyboard = new Scanner(System.in);
+		String response;
+		
+		for (int i = 0; i < size; i++) {
+			Board b = new Board();
+			
+			System.out.print("��ȣ? ");
+			b.no = keyboard.nextInt();
+			keyboard.nextLine();
+			
+			System.out.print("����? ");
+			b.title = keyboard.nextLine();
+			
+			b.date = new Date(System.currentTimeMillis());
+			b.viewCount = 0;
+			
+			boards[i] = b;
+			
+			count++;
+			
+			System.out.println();
+			
+			System.out.print("��� �Է��Ͻðڽ��ϱ�? (y/n)");
+			response = keyboard.nextLine();
+			if (!response.equalsIgnoreCase("y")) {
+				break;
+			}
+		}
+		keyboard.close();
+	}
+}	
 
-      System.out.print("영화 제목?");
-      movieTitle[i] = keyboard.nextLine();
 
-      System.out.print("내용? ");
-      review[i] = keyboard.nextLine();
 
-      Date today = new Date(System.currentTimeMillis());
-      updateDay[i] = today;
-      int viewCount = 0;
 
-      count++;
-      System.out.print("계속 등록하시겠습니까?(Y/n)");
-      String answer = keyboard.nextLine();
-      if (!answer.equalsIgnoreCase("y")) {
-        break;
-      }
-    }
-    keyboard.close();
 
-    System.out.println();
-    for (int i = 0; i < count; i++) {
-      System.out.printf("번호: %s\n", no[i]);
-      System.out.printf("영화 제목: %s\n", movieTitle[i]);
-      System.out.printf("내용: %s\n", review[i]);
-      System.out.printf("작성일: %s\n", updateDay[i]);
-      System.out.printf("조회수: %s\n", count);
-      System.out.println();
-    }
-  }
-}
+
+
+
 
 
