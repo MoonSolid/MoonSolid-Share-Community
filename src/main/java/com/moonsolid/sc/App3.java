@@ -4,60 +4,60 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class App3 {
+  public static void main (String[] args) {
 
-	static final int SIZE = 5734;
-	static Board[] boards = new Board[SIZE];
-	static int count = 0;
+    Scanner keyboard = new Scanner(System.in);
 
-	public static void main(String[] args) {
+    class Board {
+      int no;
+      String title;
+      Date date;
+      int viewCount;
+    }
 
-		inputBoards();
-		
-		System.out.println();		
-		
-		printBoards();
+    final int SIZE = 100;
 
-	}
+    Board[] boards = new Board[SIZE];
 
-	static void inputBoards() {
-		Scanner keyboard = new Scanner(System.in);
-		String response;
+    String response;
 
-		for (int i = 0; i < SIZE; i++) {
-			Board b = new Board();
+    int count = 0;
 
-			System.out.print("번호? ");
-			b.no = keyboard.nextInt();
-			keyboard.nextLine();
+    for (int i = 0; i< 100; i++) {
+      Board board = new Board();
 
-			System.out.print("내용? ");
-			b.title = keyboard.nextLine();
+      System.out.print("번호? ");
+      board.no = keyboard.nextInt();
+      keyboard.nextLine();
 
-			b.date = new Date(System.currentTimeMillis());
-			b.viewCount = 0;
+      System.out.print("내용? ");
+      board.title = keyboard.nextLine();
 
-			boards[i] = b;
+      board.date = new Date(System.currentTimeMillis());
+      board.viewCount = 0;
 
-			count++;
+      boards[i] = board;
 
-			System.out.println();
+      count++;
 
-			System.out.print("계속 입력하시겠습니까? (y/n) ");
-			response = keyboard.nextLine();
-			if (!response.equalsIgnoreCase("y")) {
-				break;
-			}
-		}
-		keyboard.close();
-	}
-
-	static void printBoards() {
-		for (int i = 0; i < count; i++) {
-			Board b = boards[i];
-			System.out.printf("%d, %s, %s, %d\n",
-					b.no, b.title, b.date, b.viewCount);
-		}
-	}
+      System.out.println();
+      
+      System.out.print("계속 입력하시겠습니까? (Y/N) ");
+      response = keyboard.nextLine();
+      if (!response.equalsIgnoreCase("y")) {
+        break;
+      }
+    }
+     keyboard.close();
+     
+     System.out.println();
+     
+     for (int i = 0; i < count; i++) {
+       Board board = boards[i];
+       System.out.printf("%d,%s,%s,%d\n",
+           board.no,board.title,board.date,board.viewCount);
+     }
+  }
 }	
 
 
