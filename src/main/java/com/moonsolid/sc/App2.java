@@ -7,22 +7,14 @@ public class App2 {
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
 
-		class Member {
-		  int no;
-		  String name;
-		  String email;
-		  String password;
-		  String photo;
-		  String tel;
-		  Date registerDate;
-		}
+		
 		
 		final int SIZE = 100;
-
-		
 		Member[] members = new Member[SIZE];
+		int count = 0;
 		
-		int count = 0; //입력받은 값만큼 반복하기위해 count 변수를 선언
+		
+		 //입력받은 값만큼 반복하기위해 count 변수를 선언
 
 
 		for (int i = 0; i <SIZE; i++) {  //0부터 배열의 사이즈만큼 반복 i++은
