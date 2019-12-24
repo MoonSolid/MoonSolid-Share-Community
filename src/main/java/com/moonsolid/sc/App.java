@@ -2,8 +2,6 @@ package com.moonsolid.sc;
 
 import java.util.Scanner;
 import handler.BoardHandler;
-import handler.BoardHandler2;
-import handler.BoardHandler3;
 import handler.LessonHandler;
 import handler.MemberHandler;
 
@@ -18,11 +16,15 @@ public class App {
     LessonHandler.keyboard = keyboard;
     MemberHandler.keyboard = keyboard;
     BoardHandler.keyboard = keyboard;
-    BoardHandler2.keyboard = keyboard;
-    BoardHandler3.keyboard = keyboard;
+   
     
- 
-
+    LessonHandler 정규수업 = new LessonHandler();
+    
+    MemberHandler 회원 = new MemberHandler();
+    
+    BoardHandler 게시판1 = new BoardHandler();
+    BoardHandler 게시판2 = new BoardHandler();
+    BoardHandler 게시판3 = new BoardHandler();
 
     String command;
 
@@ -33,76 +35,76 @@ public class App {
       switch (command) {
         case "/lesson/add":
 
-          LessonHandler.addLesson();
+          LessonHandler.addLesson(정규수업);
 
           break;
         case "/lesson/list":
 
-          LessonHandler.listLesson();
+          LessonHandler.listLesson(정규수업);
 
           break;
 
         case "/member/add":
 
-          MemberHandler.addMember();
+          MemberHandler.addMember(회원);
 
           break;
 
         case "/member/list":
 
-          MemberHandler.listMember();
+          MemberHandler.listMember(회원);
 
 
           break;
 
         case "/board/add":
 
-          BoardHandler.addBoard();
+          BoardHandler.addBoard(게시판1);
 
           break;
         case "/board/list":
 
-          BoardHandler.listBoard();
+          BoardHandler.listBoard(게시판1);
 
           break;
           
         case "/board/detail":
 
-          BoardHandler.detailBoard();
+          BoardHandler.detailBoard(게시판1);
 
           break;
           
         case "/board2/add":
 
-          BoardHandler2.addBoard();
+          BoardHandler.addBoard(게시판2);
 
           break;
         case "/board2/list":
 
-          BoardHandler2.listBoard();
+          BoardHandler.listBoard(게시판2);
 
           break;
           
         case "/board2/detail":
 
-          BoardHandler2.detailBoard();
+          BoardHandler.detailBoard(게시판2);
 
           break;
           
         case "/board3/add":
 
-          BoardHandler3.addBoard();
+          BoardHandler.addBoard(게시판3);
 
           break;
         case "/board3/list":
 
-          BoardHandler3.listBoard();
+          BoardHandler.listBoard(게시판3);
 
           break;
           
         case "/board3/detail":
 
-          BoardHandler3.detailBoard();
+          BoardHandler.detailBoard(게시판3);
 
           break;
 

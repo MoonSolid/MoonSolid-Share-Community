@@ -8,17 +8,17 @@ public class BoardHandler {
 
 
 
+   Board[] boards = new Board[BOARD_SIZE];
+   int boardCount = 0;
+
   static final int BOARD_SIZE = 100;
-  static Board[] boards = new Board[BOARD_SIZE];
-  static int boardCount = 0;
   public static Scanner keyboard;
 
 
 
 
 
-
-  public static void addBoard() {
+  public static void addBoard(BoardHandler boardhandler) {
     Board board = new Board();
 
     System.out.print("번호? ");
@@ -31,21 +31,21 @@ public class BoardHandler {
     board.date = new Date(System.currentTimeMillis());
     board.viewCount = 0;
 
-    boards[boardCount++] = board;
+    boardhandler.boards[boardhandler.boardCount++] = board;
     System.out.println("저장하였습니다."); 
   }
 
   
 
-  public static void detailBoard() {
+  public static void detailBoard(BoardHandler boardhandler) {
     System.out.print("게시물 번호? ");
     int no = keyboard.nextInt();
     keyboard.nextLine();
     
     Board board = null;
-    for (int i = 0; i < boardCount; i++) {   
-      if (boards[i].no == no) {
-        board = boards[i];
+    for (int i = 0; i < boardhandler.boardCount; i++) {   
+      if (boardhandler.boards[i].no == no) {
+        board = boardhandler.boards[i];
         break;
       }
     }
@@ -59,10 +59,10 @@ public class BoardHandler {
     System.out.printf("조회수: %d\n", board.viewCount);
   }
   
-  public static void listBoard() {
+  public static void listBoard(BoardHandler boardhandler) {
 
-    for (int i = 0; i < boardCount; i++) {
-      Board b = boards[i];
+    for (int i = 0; i < boardhandler.boardCount; i++) {
+      Board b = boardhandler.boards[i];
       System.out.printf("%d, %s , %s,%d\n",
           b.no, b.title, b.date, b.viewCount);
     }

@@ -8,12 +8,14 @@ public class MemberHandler {
 
 
 
+   Member[] members = new Member[MEMBER_SIZE];
+   int memberCount = 0;
+  
+  
   static final int MEMBER_SIZE = 100;
-  static Member[] members = new Member[MEMBER_SIZE];
-  static int memberCount = 0;
   public static Scanner keyboard;
 
-  public static void addMember() {
+  public static void addMember(MemberHandler memberHandler) {
 
     Member member = new Member();
 
@@ -38,17 +40,17 @@ public class MemberHandler {
 
     member.registerDate = new Date(System.currentTimeMillis()); //시간변수
 
-    members[memberCount++] = member;
+    memberHandler.members[memberHandler.memberCount++] = member;
 
     System.out.println("저장하였습니다.");
 
 
   }
 
-  public static void listMember() {
+  public static void listMember(MemberHandler memberHandler) {
 
-    for (int i = 0; i < memberCount; i++) {
-      Member m = members[i];
+    for (int i = 0; i < memberHandler.memberCount; i++) {
+      Member m = memberHandler.members[i];
       System.out.printf("%d,%s,%s,%s,%s\n",
           m.no, m.name, m.email, m.tel, m.registerDate );
     }
