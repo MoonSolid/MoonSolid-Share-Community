@@ -1,4 +1,4 @@
-package com.moonsolid.sc;
+package handler;
 
 import java.sql.Date;
 import java.util.Scanner;
@@ -18,9 +18,9 @@ public class LessonHandler {
   static final int LESSON_SIZE = 100;
   static Lesson[] lessons = new Lesson[LESSON_SIZE];
   static int lessonCount = 0;
-  static Scanner keyboard;
+  public static Scanner keyboard;
 
-  static void addLesson() {
+  public static void addLesson() {
 
     Lesson lesson = new Lesson();
 
@@ -51,7 +51,7 @@ public class LessonHandler {
     System.out.println("저장하였습니다.");
   }
 
-  static void listLesson() {
+  public static void listLesson() {
 
 
     for (int i = 0; i < lessonCount; i++) {
