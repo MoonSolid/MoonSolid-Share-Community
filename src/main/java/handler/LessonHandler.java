@@ -2,22 +2,16 @@ package handler;
 
 import java.sql.Date;
 import java.util.Scanner;
+import domain.Lesson;
 
 public class LessonHandler {
 
-  static class Lesson {       
-    int no;
-    String title;
-    String description;
-    Date startDate;
-    Date endDate;
-    int totalHours;
-    int dayHours;
-  }
+  
 
   static final int LESSON_SIZE = 100;
   static Lesson[] lessons = new Lesson[LESSON_SIZE];
   static int lessonCount = 0;
+  
   public static Scanner keyboard;
 
   public static void addLesson() {

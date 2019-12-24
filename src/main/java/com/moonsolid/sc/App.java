@@ -2,6 +2,8 @@ package com.moonsolid.sc;
 
 import java.util.Scanner;
 import handler.BoardHandler;
+import handler.BoardHandler2;
+import handler.BoardHandler3;
 import handler.LessonHandler;
 import handler.MemberHandler;
 
@@ -16,7 +18,10 @@ public class App {
     LessonHandler.keyboard = keyboard;
     MemberHandler.keyboard = keyboard;
     BoardHandler.keyboard = keyboard;
-
+    BoardHandler2.keyboard = keyboard;
+    BoardHandler3.keyboard = keyboard;
+    
+ 
 
 
     String command;
@@ -58,6 +63,46 @@ public class App {
         case "/board/list":
 
           BoardHandler.listBoard();
+
+          break;
+          
+        case "/board/detail":
+
+          BoardHandler.detailBoard();
+
+          break;
+          
+        case "/board2/add":
+
+          BoardHandler2.addBoard();
+
+          break;
+        case "/board2/list":
+
+          BoardHandler2.listBoard();
+
+          break;
+          
+        case "/board2/detail":
+
+          BoardHandler2.detailBoard();
+
+          break;
+          
+        case "/board3/add":
+
+          BoardHandler3.addBoard();
+
+          break;
+        case "/board3/list":
+
+          BoardHandler3.listBoard();
+
+          break;
+          
+        case "/board3/detail":
+
+          BoardHandler3.detailBoard();
 
           break;
 

@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Scanner;
 import domain.Board;
 
-public class BoardHandler {
+public class BoardHandler3 {
 
 
 
