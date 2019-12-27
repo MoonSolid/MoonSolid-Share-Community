@@ -10,21 +10,15 @@ import handler.MemberHandler;
 public class App {
   static Scanner keyboard = new Scanner(System.in);
 
-  public static void main(String[] args) {
+  public static void main(String[] args) {   
 
+    LessonHandler 정규수업 = new LessonHandler(keyboard);
 
-    LessonHandler.keyboard = keyboard;
-    MemberHandler.keyboard = keyboard;
-    BoardHandler.keyboard = keyboard;
-   
-    
-    LessonHandler 정규수업 = new LessonHandler();
-    
-    MemberHandler 회원 = new MemberHandler();
-    
-    BoardHandler 게시판1 = new BoardHandler();
-    BoardHandler 게시판2 = new BoardHandler();
-    BoardHandler 게시판3 = new BoardHandler();
+    MemberHandler 회원 = new MemberHandler(keyboard);
+
+    BoardHandler 게시판1 = new BoardHandler(keyboard);
+    BoardHandler 게시판2 = new BoardHandler(keyboard);
+    BoardHandler 게시판3 = new BoardHandler(keyboard);
 
     String command;
 
@@ -35,76 +29,76 @@ public class App {
       switch (command) {
         case "/lesson/add":
 
-          LessonHandler.addLesson(정규수업);
+          정규수업.addLesson();
 
           break;
         case "/lesson/list":
 
-          LessonHandler.listLesson(정규수업);
+          정규수업.listLesson();
 
           break;
 
         case "/member/add":
 
-          MemberHandler.addMember(회원);
+          회원.addMember();
 
           break;
 
         case "/member/list":
 
-          MemberHandler.listMember(회원);
+          회원.listMember();
 
 
           break;
 
         case "/board/add":
 
-          BoardHandler.addBoard(게시판1);
+          게시판1.addBoard();
 
           break;
         case "/board/list":
 
-          BoardHandler.listBoard(게시판1);
+          게시판1.listBoard();
 
           break;
-          
+
         case "/board/detail":
 
-          BoardHandler.detailBoard(게시판1);
+          게시판1.detailBoard();
 
           break;
-          
+
         case "/board2/add":
 
-          BoardHandler.addBoard(게시판2);
+          게시판2.addBoard();
 
           break;
         case "/board2/list":
 
-          BoardHandler.listBoard(게시판2);
+          게시판2.listBoard();
 
           break;
-          
+
         case "/board2/detail":
 
-          BoardHandler.detailBoard(게시판2);
+          게시판2.detailBoard();
 
           break;
-          
+
         case "/board3/add":
 
-          BoardHandler.addBoard(게시판3);
+          게시판3.addBoard();
 
           break;
         case "/board3/list":
 
-          BoardHandler.listBoard(게시판3);
+          게시판3.listBoard();
 
           break;
-          
+
         case "/board3/detail":
 
-          BoardHandler.detailBoard(게시판3);
+          게시판3.detailBoard();
 
           break;
 
