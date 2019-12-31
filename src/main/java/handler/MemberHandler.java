@@ -26,25 +26,25 @@ public class MemberHandler {
     Member member = new Member();
 
     System.out.print("번호? ");
-    member.no = input.nextInt();    //배열의 i번째에 입력값저장
+    member.setNo(input.nextInt());    //배열의 i번째에 입력값저장
     input.nextLine();
 
     System.out.print("이름? ");
-    member.name = input.nextLine();
+    member.setName(input.nextLine());
 
     System.out.print("이메일? ");
-    member.email = input.nextLine();
+    member.setEmail(input.nextLine());
 
     System.out.print("암호? ");
-    member.password = input.nextLine();
+    member.setPassword(input.nextLine());
 
     System.out.print("사진? ");
-    member.photo = input.nextLine();
+    member.setPhoto(input.nextLine());
 
     System.out.print("전화? ");
-    member.tel = input.nextLine();
+    member.setTel(input.nextLine());
 
-    member.registerDate = new Date(System.currentTimeMillis()); //시간변수
+    member.setRegisterDate( new Date(System.currentTimeMillis())); //시간변수
 
     this.members[this.memberCount++] = member;
 
@@ -58,7 +58,7 @@ public class MemberHandler {
     for (int i = 0; i < this.memberCount; i++) {
       Member m = this.members[i];
       System.out.printf("%d,%s,%s,%s,%s\n",
-          m.no, m.name, m.email, m.tel, m.registerDate );
+          m.getNo(), m.getName(), m.getEmail(), m.getTel(), m.getRegisterDate());
     }
   }
 

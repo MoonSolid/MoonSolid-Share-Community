@@ -27,26 +27,26 @@ public class LessonHandler {
     Lesson lesson = new Lesson();
 
     System.out.print("번호? ");
-    lesson.no = input.nextInt();
+    lesson.setNo(input.nextInt());
     input.nextLine();
 
     System.out.print("수업명? ");
-    lesson.title = input.nextLine();
+    lesson.setTitle(input.nextLine());
 
     System.out.println("설명? ");
-    lesson.description = input.nextLine();
+    lesson.setDescription( input.nextLine());
 
     System.out.println("시작일? ");
-    lesson.startDate = Date.valueOf(input.next());
+    lesson.setStartDate(Date.valueOf(input.next()));
 
     System.out.println("종료일? ");
-    lesson.endDate = Date.valueOf(input.next());
+    lesson.setEndDate(Date.valueOf(input.next()));
 
     System.out.println("총수업시간? " );
-    lesson.totalHours = input.nextInt();
+    lesson.setTotalHours(input.nextInt());
 
     System.out.println("일수업시간? ");
-    lesson.dayHours = input.nextInt();
+    lesson.setDayHours(input.nextInt());
     input.nextLine();
 
     this.lessons[this.lessonCount++] = lesson;
@@ -59,7 +59,7 @@ public class LessonHandler {
     for (int i = 0; i < this.lessonCount; i++) {
       Lesson l = this.lessons[i];
       System.out.printf("%d,%s,%s~%s,%d\n",
-          l.no, l.title, l.startDate, l.endDate, l.totalHours );
+          l.getNo(), l.getTitle(), l.getStartDate(), l.getEndDate(), l.getTotalHours());
 
     }
   }
