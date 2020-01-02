@@ -6,18 +6,13 @@ import domain.Lesson;
 
 public class LessonHandler {
   
-  
-  Lesson[] lessons;
-  int lessonCount = 0;
+  LessonList lessonList;
   
   public Scanner input;
-
- 
-  static final int LESSON_SIZE = 100;
   
   public LessonHandler(Scanner input) {
     this.input = input;
-    this.lessons = new Lesson[LESSON_SIZE];
+    this.lessonList = new LessonList();
   }
   
   public void addLesson() {
@@ -47,13 +42,14 @@ public class LessonHandler {
     lesson.setDayHours(input.nextInt());
     input.nextLine(); 
     
-    this.lessons[this.lessonCount++] = lesson;
+    lessonList.add(lesson);
+    
     System.out.println("저장하였습니다.");
   }
   
   public void listLesson() {
-    for (int i = 0; i < this.lessonCount; i++) {
-      Lesson l = this.lessons[i];
+    Lesson[] lessons = this.lessonList.toArray();
+    for (Lesson l : lessons) {
       System.out.printf("%d, %s, %s ~ %s, %d\n",
           l.getNo(), l.getTitle(), 
           l.getStartDate(), l.getEndDate(), l.getTotalHours());
