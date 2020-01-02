@@ -6,13 +6,18 @@ import domain.Lesson;
 
 public class LessonHandler {
   
-  LessonList lessonList;
+  ArrayList lessonList;
   
-  public Scanner input;
+  Scanner input;
   
   public LessonHandler(Scanner input) {
     this.input = input;
-    this.lessonList = new LessonList();
+    lessonList = new ArrayList();
+  }
+  
+  public LessonHandler(Scanner input, int capacity) {
+    this.input = input;
+    lessonList = new ArrayList(capacity);
   }
   
   public void addLesson() {
@@ -48,8 +53,9 @@ public class LessonHandler {
   }
   
   public void listLesson() {
-    Lesson[] lessons = this.lessonList.toArray();
-    for (Lesson l : lessons) {
+    Object[] arr = this.lessonList.toArray();
+    for (Object obj : arr) {
+      Lesson l = (Lesson) obj;
       System.out.printf("%d, %s, %s ~ %s, %d\n",
           l.getNo(), l.getTitle(), 
           l.getStartDate(), l.getEndDate(), l.getTotalHours());
