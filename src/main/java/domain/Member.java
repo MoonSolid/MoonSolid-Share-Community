@@ -3,15 +3,14 @@ package domain;
 import java.sql.Date;
 
 public class Member {
-
+  
   private int no;
   private String name;
   private String email;
   private String password;
   private String photo;
   private String tel;
-  private Date registerDate;
-  
+  private Date registeredDate;
   
   public int getNo() {
     return no;
@@ -49,11 +48,10 @@ public class Member {
   public void setTel(String tel) {
     this.tel = tel;
   }
-  public Date getRegisterDate() {
-    return registerDate;
+  public Date getRegisteredDate() {
+    return registeredDate;
   }
-  public void setRegisterDate(Date registerDate) {
-    this.registerDate = registerDate;
+  public void setRegisteredDate(Date registeredDate) {
+    this.registeredDate = registeredDate;
   }
-  
 }
