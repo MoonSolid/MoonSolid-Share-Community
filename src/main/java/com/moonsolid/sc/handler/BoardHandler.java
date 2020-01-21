@@ -3,28 +3,30 @@ package com.moonsolid.sc.handler;
 import java.sql.Date;
 import java.util.Scanner;
 import com.moonsolid.sc.domain.Board;
+import com.moonsolid.sc.util.ArrayList;
 
 public class BoardHandler {
   
-  ArrayList boardList;
+  ArrayList<Board> boardList;
   
   Scanner input;
   
   
   public BoardHandler(Scanner input) {
     this.input = input;
-    this.boardList = new ArrayList();
+    this.boardList = new ArrayList<>();
   }
   
   public BoardHandler(Scanner input, int capacity) {
     this.input = input;
-    this.boardList = new ArrayList(capacity);
+    this.boardList = new ArrayList<>(capacity);
   }
   
   public void listBoard() {
-    Object[] arr = this.boardList.toArray();
-    for (Object obj : arr) {
-      Board b = (Board) obj;
+    Board[] arr = new Board[this.boardList.size()];
+        this.boardList.toArray(arr);
+        
+    for (Board b : arr) {
       System.out.printf("%d, %s, %s, %d\n", 
           b.getNo(), b.getTitle(), b.getDate(), b.getViewCount());
     }
