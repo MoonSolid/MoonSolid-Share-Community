@@ -1,55 +1,50 @@
-package handler;
+package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import java.util.Scanner;
-import domain.Lesson;
+import com.moonsolid.sc.domain.Lesson;
 
 public class LessonHandler {
   
   ArrayList lessonList;
   
-  Scanner input;
+  public Scanner input;
   
   public LessonHandler(Scanner input) {
     this.input = input;
-    lessonList = new ArrayList();
-  }
-  
-  public LessonHandler(Scanner input, int capacity) {
-    this.input = input;
-    lessonList = new ArrayList(capacity);
+    this.lessonList = new ArrayList();
   }
   
   public void addLesson() {
     Lesson lesson = new Lesson();
     
-    System.out.print("¹øÈ£? ");
+    System.out.print("ë²ˆí˜¸? ");
     lesson.setNo(input.nextInt());
 
     input.nextLine(); 
 
-    System.out.print("¼ö¾÷¸í? ");
+    System.out.print("ìˆ˜ì—…ëª…? ");
     lesson.setTitle(input.nextLine());
 
-    System.out.print("¼³¸í? ");
+    System.out.print("ì„¤ëª…? ");
     lesson.setDescription(input.nextLine());
 
-    System.out.print("½ÃÀÛÀÏ? ");
+    System.out.print("ì‹œì‘ì¼? ");
     lesson.setStartDate(Date.valueOf(input.next()));
 
-    System.out.print("Á¾·áÀÏ? ");
+    System.out.print("ì¢…ë£Œì¼? ");
     lesson.setEndDate(Date.valueOf(input.next()));
 
-    System.out.print("ÃÑ¼ö¾÷½Ã°£? ");
+    System.out.print("ì´ìˆ˜ì—…ì‹œê°„? ");
     lesson.setTotalHours(input.nextInt());
 
-    System.out.print("ÀÏ¼ö¾÷½Ã°£? ");
+    System.out.print("ì¼ìˆ˜ì—…ì‹œê°„? ");
     lesson.setDayHours(input.nextInt());
     input.nextLine(); 
     
     lessonList.add(lesson);
     
-    System.out.println("ÀúÀåÇÏ¿´½À´Ï´Ù.");
+    System.out.println("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
   }
   
   public void listLesson() {

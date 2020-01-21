@@ -1,7 +1,6 @@
-package handler;
+package com.moonsolid.sc.handler;
 
 import java.util.Arrays;
-import domain.Board;
 
 public class ArrayList {
   
@@ -22,18 +21,14 @@ public class ArrayList {
   }
 
   public Object[] toArray() {
-   
     return Arrays.copyOf(this.list, this.size);
   }
 
   public void add(Object obj) {
     if (this.size == this.list.length) {
-     
       int oldCapacity = this.list.length;
       int newCapacity = oldCapacity + (oldCapacity >> 1);
       this.list = Arrays.copyOf(this.list, newCapacity);
-  
-
     }
     this.list[this.size++] = obj;
   }
@@ -45,9 +40,7 @@ public class ArrayList {
       return null;
     }
   }
-     
-}      
-    
+}
 
 
 

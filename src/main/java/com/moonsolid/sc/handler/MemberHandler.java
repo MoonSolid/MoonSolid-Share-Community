@@ -1,23 +1,18 @@
-package handler;
+package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import java.util.Scanner;
-import domain.Member;
+import com.moonsolid.sc.domain.Member;
 
 public class MemberHandler {
   
   ArrayList memberList;
 
-  Scanner input;
+  public Scanner input;
 
   public MemberHandler(Scanner input) {
     this.input = input;
-    memberList = new ArrayList();
-  }
-  
-  public MemberHandler(Scanner inpt, int capacity) {
-    this.input = input;
-    memberList = new ArrayList(capacity);
+    this.memberList = new ArrayList();
   }
   
   public void listMember() {
@@ -33,29 +28,29 @@ public class MemberHandler {
   public void addMember() {
     Member member = new Member();
 
-    System.out.print("¹øÈ£? ");
+    System.out.print("ë²ˆí˜¸? ");
     member.setNo(input.nextInt());
-    input.nextLine(); // ÁÙ¹Ù²Ş ±âÈ£ Á¦°Å¿ë
+    input.nextLine(); // ì¤„ë°”ê¿ˆ ê¸°í˜¸ ì œê±°ìš©
 
-    System.out.print("ÀÌ¸§? ");
+    System.out.print("ì´ë¦„? ");
     member.setName(input.nextLine());
 
-    System.out.print("ÀÌ¸ŞÀÏ? ");
+    System.out.print("ì´ë©”ì¼? ");
     member.setEmail(input.nextLine());
 
-    System.out.print("¾ÏÈ£? ");
+    System.out.print("ì•”í˜¸? ");
     member.setPassword(input.nextLine());
 
-    System.out.print("»çÁø? ");
+    System.out.print("ì‚¬ì§„? ");
     member.setPhoto(input.nextLine());
 
-    System.out.print("ÀüÈ­? ");
+    System.out.print("ì „í™”? ");
     member.setTel(input.nextLine());
 
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
     
-    memberList.add(member);
+    this.memberList.add(member);
     
-    System.out.println("ÀúÀåÇÏ¿´½À´Ï´Ù.");
+    System.out.println("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
   }
 }

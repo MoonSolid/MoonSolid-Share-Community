@@ -1,150 +1,114 @@
 package com.moonsolid.sc;
 
 import java.util.Scanner;
-import handler.BoardHandler;
-import handler.LessonHandler;
-import handler.MemberHandler;
-
-
+import com.moonsolid.sc.handler.BoardHandler;
+import com.moonsolid.sc.handler.LessonHandler;
+import com.moonsolid.sc.handler.MemberHandler;
 
 public class App {
+
   static Scanner keyboard = new Scanner(System.in);
-
-  public static void main(String[] args) {   
-
-    LessonHandler Á¤±Ô¼ö¾÷ = new LessonHandler(keyboard);
-
-    MemberHandler È¸¿ø = new MemberHandler(keyboard);
-
-    BoardHandler °Ô½ÃÆÇ1 = new BoardHandler(keyboard);
-    BoardHandler °Ô½ÃÆÇ2 = new BoardHandler(keyboard);
-    BoardHandler °Ô½ÃÆÇ3 = new BoardHandler(keyboard);
+  
+  public static void main(String[] args) {
+    
+    // BoardHandlerì˜ ë©”ì„œë“œê°€ ì‚¬ìš©í•  ë©”ëª¨ë¦¬ë§Œ ê²Œì‹œíŒ ë§ˆë‹¤ ë”°ë¡œ ìƒì„±í•œë‹¤.
+    BoardHandler ê²Œì‹œíŒ1 = new BoardHandler(keyboard);
+    BoardHandler ê²Œì‹œíŒ2 = new BoardHandler(keyboard, 200);
+    BoardHandler ê²Œì‹œíŒ3 = new BoardHandler(keyboard, 1000);
+    BoardHandler ê²Œì‹œíŒ4 = new BoardHandler(keyboard);
+    BoardHandler ê²Œì‹œíŒ5 = new BoardHandler(keyboard, 9000);
+    BoardHandler ê²Œì‹œíŒ6 = new BoardHandler(keyboard, 20000);
+    
+    LessonHandler ì •ê·œìˆ˜ì—… = new LessonHandler(keyboard);
+    
+    MemberHandler ì¼ë°˜íšŒì› = new MemberHandler(keyboard);
 
     String command;
-
+    
     do {
-      System.out.print("¸í·É> ");
+      System.out.print("\nëª…ë ¹> ");
       command = keyboard.nextLine();
-
+      
       switch (command) {
         case "/lesson/add":
-
-          Á¤±Ô¼ö¾÷.addLesson();
-
+          ì •ê·œìˆ˜ì—….addLesson();
           break;
         case "/lesson/list":
-
-          Á¤±Ô¼ö¾÷.listLesson();
-
+          ì •ê·œìˆ˜ì—….listLesson();
           break;
-
         case "/member/add":
-
-          È¸¿ø.addMember();
-
+          ì¼ë°˜íšŒì›.addMember();
           break;
-
         case "/member/list":
-
-          È¸¿ø.listMember();
-
-
+          ì¼ë°˜íšŒì›.listMember();
           break;
-
         case "/board/add":
-
-          °Ô½ÃÆÇ1.addBoard();
-
+          ê²Œì‹œíŒ1.addBoard();
           break;
         case "/board/list":
-
-          °Ô½ÃÆÇ1.listBoard();
-
+          ê²Œì‹œíŒ1.listBoard();
           break;
-
         case "/board/detail":
-
-          °Ô½ÃÆÇ1.detailBoard();
-
-          break;
-
+          ê²Œì‹œíŒ1.detailBoard();
+          break;  
         case "/board2/add":
-
-          °Ô½ÃÆÇ2.addBoard();
-
+          ê²Œì‹œíŒ2.addBoard();
           break;
         case "/board2/list":
-
-          °Ô½ÃÆÇ2.listBoard();
-
+          ê²Œì‹œíŒ2.listBoard();
           break;
-
         case "/board2/detail":
-
-          °Ô½ÃÆÇ2.detailBoard();
-
-          break;
-
+          ê²Œì‹œíŒ2.detailBoard();
+          break;    
         case "/board3/add":
-
-          °Ô½ÃÆÇ3.addBoard();
-
+          ê²Œì‹œíŒ3.addBoard();
           break;
         case "/board3/list":
-
-          °Ô½ÃÆÇ3.listBoard();
-
+          ê²Œì‹œíŒ3.listBoard();
           break;
-
         case "/board3/detail":
-
-          °Ô½ÃÆÇ3.detailBoard();
-
+          ê²Œì‹œíŒ3.detailBoard();
+          break;  
+        case "/board4/add":
+          ê²Œì‹œíŒ4.addBoard();
           break;
-
-
+        case "/board4/list":
+          ê²Œì‹œíŒ4.listBoard();
+          break;
+        case "/board4/detail":
+          ê²Œì‹œíŒ4.detailBoard();
+          break;  
+        case "/board5/add":
+          ê²Œì‹œíŒ5.addBoard();
+          break;
+        case "/board5/list":
+          ê²Œì‹œíŒ5.listBoard();
+          break;
+        case "/board5/detail":
+          ê²Œì‹œíŒ5.detailBoard();
+          break;  
+        case "/board6/add":
+          ê²Œì‹œíŒ6.addBoard();
+          break;
+        case "/board6/list":
+          ê²Œì‹œíŒ6.listBoard();
+          break;
+        case "/board6/detail":
+          ê²Œì‹œíŒ6.detailBoard();
+          break;  
         default:
           if (!command.equalsIgnoreCase("quit")) {
-            System.out.println("½ÇÇàÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.");
+            System.out.println("ì‹¤í–‰í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ì…ë‹ˆë‹¤.");
           }
-
       }
-
+      
     } while (!command.equalsIgnoreCase("quit"));
-
-    System.out.println("¾È³ç!");
-
+    
+    System.out.println("ì•ˆë…•!");
+    
     keyboard.close();
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

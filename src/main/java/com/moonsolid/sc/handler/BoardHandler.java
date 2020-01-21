@@ -1,8 +1,8 @@
-package handler;
+package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import java.util.Scanner;
-import domain.Board;
+import com.moonsolid.sc.domain.Board;
 
 public class BoardHandler {
   
@@ -13,12 +13,12 @@ public class BoardHandler {
   
   public BoardHandler(Scanner input) {
     this.input = input;
-    boardList = new ArrayList();
+    this.boardList = new ArrayList();
   }
   
   public BoardHandler(Scanner input, int capacity) {
     this.input = input;
-    boardList = new ArrayList(capacity);
+    this.boardList = new ArrayList(capacity);
   }
   
   public void listBoard() {
@@ -33,37 +33,37 @@ public class BoardHandler {
   public void addBoard() {
     Board board = new Board();
     
-    System.out.print("¹øÈ£? ");
+    System.out.print("ë²ˆí˜¸? ");
     board.setNo(input.nextInt());
-    input.nextLine(); // ÁÙ¹Ù²Ş ±âÈ£ Á¦°Å¿ë
+    input.nextLine(); // ì¤„ë°”ê¿ˆ ê¸°í˜¸ ì œê±°ìš©
 
-    System.out.print("³»¿ë? ");
+    System.out.print("ë‚´ìš©? ");
     board.setTitle(input.nextLine());
 
     board.setDate(new Date(System.currentTimeMillis()));
     board.setViewCount(0);
     
-    boardList.add(board);
+    this.boardList.add(board);
     
-    System.out.println("ÀúÀåÇÏ¿´½À´Ï´Ù.");
+    System.out.println("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
   }
   
   public void detailBoard() {
-    System.out.print("°Ô½Ã¹° ÀÎµ¦½º? ");
+    System.out.print("ê²Œì‹œë¬¼ ì¸ë±ìŠ¤? ");
     int index = input.nextInt();
-    input.nextLine(); // ¼ıÀÚ µÚÀÇ ³²Àº °ø¹é Á¦°Å
+    input.nextLine(); // ìˆ«ì ë’¤ì˜ ë‚¨ì€ ê³µë°± ì œê±°
     
     Board board = (Board) this.boardList.get(index);
     
     if (board == null) {
-      System.out.println("°Ô½Ã¹° ÀÎµ¦½º°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+      System.out.println("ê²Œì‹œë¬¼ ì¸ë±ìŠ¤ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
       return;
     }
     
-    System.out.printf("¹øÈ£: %d\n", board.getNo());
-    System.out.printf("Á¦¸ñ: %s\n", board.getTitle());
-    System.out.printf("µî·ÏÀÏ: %s\n", board.getDate());
-    System.out.printf("Á¶È¸¼ö: %d\n", board.getViewCount());
+    System.out.printf("ë²ˆí˜¸: %d\n", board.getNo());
+    System.out.printf("ì œëª©: %s\n", board.getTitle());
+    System.out.printf("ë“±ë¡ì¼: %s\n", board.getDate());
+    System.out.printf("ì¡°íšŒìˆ˜: %d\n", board.getViewCount());
   }
 
 }

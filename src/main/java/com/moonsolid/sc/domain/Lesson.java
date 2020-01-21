@@ -1,4 +1,4 @@
-package domain;
+package com.moonsolid.sc.domain;
 
 import java.sql.Date;
 
