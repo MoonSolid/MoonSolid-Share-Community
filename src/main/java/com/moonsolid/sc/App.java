@@ -4,6 +4,7 @@ import java.util.Scanner;
 import com.moonsolid.sc.handler.BoardHandler;
 import com.moonsolid.sc.handler.LessonHandler;
 import com.moonsolid.sc.handler.MemberHandler;
+import com.moonsolid.sc.util.Prompt;
 
 public class App {
 
@@ -11,12 +12,11 @@ public class App {
   
   public static void main(String[] args) {
     
-    // BoardHandler의 메서드가 사용할 메모리만 게시판 마다 따로 생성한다.
-    BoardHandler boardHandler = new BoardHandler(keyboard);
+    Prompt prompt = new Prompt(keyboard);
     
-    LessonHandler lessonHandler = new LessonHandler(keyboard);
-    
-    MemberHandler memberHandler = new MemberHandler(keyboard);
+    BoardHandler boardHandler = new BoardHandler(prompt);
+    LessonHandler lessonHandler = new LessonHandler(prompt);
+    MemberHandler memberHandler = new MemberHandler(prompt);
 
     String command;
     

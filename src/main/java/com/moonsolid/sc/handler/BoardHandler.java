@@ -1,28 +1,23 @@
 package com.moonsolid.sc.handler;
 
 import java.sql.Date;
-import java.util.Scanner;
 import com.moonsolid.sc.domain.Board;
-import com.moonsolid.sc.util.ArrayList;
+import com.moonsolid.sc.util.LinkedList;
+import com.moonsolid.sc.util.Prompt;
 
 public class BoardHandler {
 
-  ArrayList<Board> boardList;
-
-  Scanner input;
+  LinkedList<Board> boardList;
 
 
-  public BoardHandler(Scanner input) {
-    this.input = input;
-    this.boardList = new ArrayList<>();
+  Prompt prompt;
+  
+  public BoardHandler(Prompt prompt) {
+    this.prompt = prompt;
+    this.boardList = new LinkedList<>();
   }
 
-  public BoardHandler(Scanner input, int capacity) {
-    this.input = input;
-    this.boardList = new ArrayList<>(capacity);
-  }
-
-  public void listBoard() {
+   public void listBoard() {
     Board[] arr = new Board[this.boardList.size()];
     this.boardList.toArray(arr);
 
@@ -35,33 +30,26 @@ public class BoardHandler {
   public void addBoard() {
     Board board = new Board();
 
-    System.out.print("번호? ");
-    board.setNo(input.nextInt());
-    input.nextLine(); // 줄바꿈 기호 제거용
-
-    System.out.print("내용? ");
-    board.setTitle(input.nextLine());
-
+    board.setNo(prompt.inputInt("번호? "));
+    board.setTitle(prompt.inputString("내용? "));
     board.setDate(new Date(System.currentTimeMillis()));
     board.setViewCount(0);
 
     this.boardList.add(board);
-
+    
     System.out.println("저장하였습니다.");
+
   }
 
   public void detailBoard() {
-    System.out.print("게시물 인덱스? ");
-    int index = input.nextInt();
-    input.nextLine(); // 숫자 뒤의 남은 공백 제거
+    int index = indexOfBoard(prompt.inputInt("번호? "));
 
-    Board board = (Board) this.boardList.get(index);
-
-    if (board == null) {
+    if (index == -1) {
       System.out.println("게시물 인덱스가 유효하지 않습니다.");
       return;
     }
-
+    
+    Board board = (Board) this.boardList.get(index);
     System.out.printf("번호: %d\n", board.getNo());
     System.out.printf("제목: %s\n", board.getTitle());
     System.out.printf("등록일: %s\n", board.getDate());
@@ -69,30 +57,30 @@ public class BoardHandler {
   }
 
   public void updateBoard() {
-    System.out.print("게시글 인덱스?");
-    int index = input.nextInt();
-    input.nextLine();
+   int index = indexOfBoard(prompt.inputInt("번호 ?"));
 
     Board oldBoard = this.boardList.get(index);
 
-    if (oldBoard == null) {
-      System.out.println("게시글 인덱스가 유효하지 않습니다.");
+    if (index == -1) {
+      System.out.println("해당 번호의 게시글이 없습니다..");
       return;
     }
+    Board newBoard = new Board();
+    
+    newBoard.setNo(oldBoard.getNo());
+    newBoard.setViewCount(oldBoard.getViewCount());
+    newBoard.setDate(new Date(System.currentTimeMillis()));
+    newBoard.setTitle(prompt.inputString(
+        String.format("내용(%s)? ", oldBoard.getTitle()),
+        oldBoard.getTitle()));
+        
 
-    System.out.printf("내용(%s) ", oldBoard.getTitle());
-    String title = input.nextLine();
 
-    if (title.length() == 0) {
+    if (newBoard.equals(oldBoard)) {
       System.out.println("게시글 변경을 취소했습니다.");
       return;
     }
 
-    Board newBoard = new Board();
-    newBoard.setNo(oldBoard.getNo());
-    newBoard.setViewCount(oldBoard.getViewCount());
-    newBoard.setTitle(title);
-    newBoard.setDate(new Date(System.currentTimeMillis()));
 
     this.boardList.set(index, newBoard);
 
@@ -100,20 +88,27 @@ public class BoardHandler {
   }
 
   public void deleteBoard() {
-    System.out.print("게시글 인덱스? ");
-    int index = input.nextInt();
-    input.nextLine();
-
-    Board board = this.boardList.get(index);
-
-    if (board == null) {
-      System.out.println("게시글 인덱스가 유효하지 않습니다.");
+    int index = indexOfBoard(prompt.inputInt("번호? "));
+    
+    if (index == -1) {
+      System.out.println("해당 번호의 게시글이 없습니다..");
       return;
     }
+
     this.boardList.remove(index);
     System.out.println("게시글을 삭제했습니다.");
   }
 
+
+  private int indexOfBoard(int no) {
+    for (int i = 0; i < this.boardList.size(); i++) {
+      if (this.boardList.get(i).getNo() == no) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  
 }
 
 

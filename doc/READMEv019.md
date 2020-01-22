@@ -1,21 +1,21 @@
 # 19 - CRUD(Create/Retrieve/Update/Delete) 기능 완성
 
-## 
+
 
 - 데이터를 등록/조회/수정/삭제하는 기능(CRUD)을 구현.
 
-## 
 
-- src/main/java/com/eomcs/util/ArrayList.java 변경
-- src/main/java/com/eomcs/lms/handler/LessonHandler.java 변경
-- src/main/java/com/eomcs/lms/handler/MemberHandler.java 변경
-- src/main/java/com/eomcs/lms/handler/BoardHandler.java 변경
-- src/main/java/com/eomcs/lms/domain/Lesson.java 변경
-- src/main/java/com/eomcs/lms/domain/Member.java 변경
-- src/main/java/com/eomcs/lms/domain/Board.java 변경
-- src/main/java/com/eomcs/lms/App.java 변경
 
-## 
+- src/main/java/com/moonsolid/util/ArrayList.java 변경
+- src/main/java/com/moonsolid/sc/handler/LessonHandler.java 변경
+- src/main/java/com/moonsolid/sc/handler/MemberHandler.java 변경
+- src/main/java/com/moonsolid/sc/handler/BoardHandler.java 변경
+- src/main/java/com/moonsolid/sc/domain/Lesson.java 변경
+- src/main/java/com/moonsolid/sc/domain/Member.java 변경
+- src/main/java/com/moonsolid/sc/domain/Board.java 변경
+- src/main/java/com/moonsolid/sc/App.java 변경
+
+ 
 
 ### 작업1) ArrayList 클래스에 항목 값을 조회하고 변경하고 삭제하는 기능을 추가.
 
