@@ -1,10 +1,14 @@
 package com.moonsolid.sc;
 
 import java.util.Scanner;
-
+import com.moonsolid.sc.domain.Board;
+import com.moonsolid.sc.domain.Lesson;
+import com.moonsolid.sc.domain.Member;
 import com.moonsolid.sc.handler.BoardHandler;
 import com.moonsolid.sc.handler.LessonHandler;
 import com.moonsolid.sc.handler.MemberHandler;
+import com.moonsolid.sc.util.ArrayList;
+import com.moonsolid.sc.util.LinkedList;
 import com.moonsolid.sc.util.Prompt;
 import com.moonsolid.sc.util.Queue;
 import com.moonsolid.sc.util.Stack;
@@ -16,13 +20,20 @@ public class App {
   static Stack<String> commandStack = new Stack<>();
   static Queue<String> commandQueue = new Queue<>();
   
+
   public static void main(String[] args) {
     
     Prompt prompt = new Prompt(keyboard);
     
-    BoardHandler boardHandler = new BoardHandler(prompt);
-    LessonHandler lessonHandler = new LessonHandler(prompt);
-    MemberHandler memberHandler = new MemberHandler(prompt);
+    LinkedList<Board> boardList = new LinkedList<>();
+    BoardHandler boardHandler = new BoardHandler(prompt, boardList);
+    
+    ArrayList<Lesson> lessonList = new ArrayList<>();
+    LessonHandler lessonHandler = new LessonHandler(prompt, lessonList);
+    
+    LinkedList<Member> memberList = new LinkedList<>();
+    MemberHandler memberHandler = new MemberHandler(prompt, memberList);
+    
 
     String command;
     
@@ -44,13 +55,13 @@ public class App {
           lessonHandler.listLesson();
           break;
         case "/lesson/detail":
-          lessonHandler.listLesson();
+          lessonHandler.detailLesson();
           break;
         case "/lesson/update":
-          lessonHandler.listLesson();
+          lessonHandler.updateLesson();
           break;
         case "/lesson/delete":
-          lessonHandler.listLesson();
+          lessonHandler.deleteLesson();
             break;
         case "/member/add":
           memberHandler.addMember();
@@ -59,28 +70,28 @@ public class App {
           memberHandler.listMember();
           break;
         case "/member/detail":
-          memberHandler.listMember();
+          memberHandler.detailMember();
           break;
         case "/member/update":
-          memberHandler.listMember();
+          memberHandler.updateMember();
           break;
         case "/member/delete":
-          memberHandler.listMember();
+          memberHandler.deleteMember();
             break;
         case "/board/add":
-          boardHandler.listBoard();
+          boardHandler.addBoard();
           break;
         case "/board/list":
           boardHandler.listBoard();
           break;
         case "/board/detail":
-          boardHandler.listBoard();
+          boardHandler.detailBoard();
           break;
         case "/board/update":
-          boardHandler.listBoard();
+          boardHandler.updateBoard();
           break;
         case "/board/delete":
-          boardHandler.listBoard();
+          boardHandler.deleteBoard();
             break;
         case "history":
           printCommandHistory();

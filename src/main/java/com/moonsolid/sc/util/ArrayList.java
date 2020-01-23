@@ -2,12 +2,11 @@ package com.moonsolid.sc.util;
 
 import java.util.Arrays;
 
-public class ArrayList<E> {
+public class ArrayList<E> extends AbstractList<E> {
 
   static final int DEFAULT_CAPACITY = 3;
 
   Object[] elementData;;
-  int size;
 
   public ArrayList() {
     this.elementData = new Object[DEFAULT_CAPACITY];
@@ -21,7 +20,7 @@ public class ArrayList<E> {
     }
   }
 
-
+  
   public void add(E e) {
     if (this.size == this.elementData.length) {
       grow();
@@ -30,10 +29,7 @@ public class ArrayList<E> {
   }
 
 
-
-
-
-
+  @Override
   @SuppressWarnings("unchecked")
   public E get(int index) {
     if (index < 0 || index >= this.size) {
@@ -42,7 +38,7 @@ public class ArrayList<E> {
     return (E)this.elementData[index];
   }
 
-
+  @Override
   @SuppressWarnings("unchecked")
   public E set(int index, E e) {
     if (index < 0 || index >= this.size) {
@@ -52,7 +48,8 @@ public class ArrayList<E> {
     this.elementData[index] = e;
     return oldValue;
   }
-
+  
+  @Override
   @SuppressWarnings("unchecked")
   public E remove(int index) {
     if (index < 0 || index >= this.size) {
@@ -65,11 +62,6 @@ public class ArrayList<E> {
     return oldValue;
   }
 
-
-
-  public int size() {
-    return this.size;
-  }
 
   public Object[] toArray() {
     return Arrays.copyOf(this.elementData, this.size);
@@ -85,6 +77,7 @@ public class ArrayList<E> {
     return arr;
   }
 
+  @Override
   public void add(int index, E value) {
     if(index < 0 || index >= this.size)
       return;

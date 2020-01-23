@@ -1,18 +1,18 @@
 package com.moonsolid.sc.handler;
 
 import com.moonsolid.sc.domain.Lesson;
-import com.moonsolid.sc.util.LinkedList;
+import com.moonsolid.sc.util.List;
 import com.moonsolid.sc.util.Prompt;
 
 public class LessonHandler {
 
-  LinkedList<Lesson> lessonList;
+  List<Lesson> lessonList;
 
   Prompt prompt;
 
-  public LessonHandler(Prompt prompt) {
+  public LessonHandler(Prompt prompt, List<Lesson> list) {
     this.prompt = prompt;
-    this.lessonList = new LinkedList<>();
+    this.lessonList = list;
   }
 
   public void addLesson() {
@@ -107,7 +107,7 @@ public class LessonHandler {
 
 
 public void deleteLesson() {
-  int index = indexOfLesson(prompt.inputInt("수업 번호? "));
+  int index = indexOfLesson(prompt.inputInt("번호? "));
 
   if (index == -1) {
     System.out.println("해당 번호의 수업이 없습니다.");

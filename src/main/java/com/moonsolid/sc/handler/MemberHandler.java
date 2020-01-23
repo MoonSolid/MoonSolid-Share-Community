@@ -2,28 +2,20 @@ package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import com.moonsolid.sc.domain.Member;
-import com.moonsolid.sc.util.LinkedList;
+import com.moonsolid.sc.util.List;
 import com.moonsolid.sc.util.Prompt;
 
 public class MemberHandler {
 
-  LinkedList<Member> memberList;
+  List<Member> memberList;
 
    Prompt prompt;
 
-  public MemberHandler(Prompt prompt) {
+  public MemberHandler(Prompt prompt, List<Member> list) {
     this.prompt = prompt;
-    this.memberList = new LinkedList<>();
+    this.memberList = list;
   }
 
-  public void listMember() {
-    Member[] arr = this.memberList.toArray(new Member[] {});
-    for (Member m : arr) {
-      System.out.printf("%d, %s, %s, %s, %s\n", 
-          m.getNo(), m.getName(), m.getEmail(), 
-          m.getTel(), m.getRegisteredDate());
-    }
-  }
 
   public void addMember() {
     Member member = new Member();
@@ -41,6 +33,14 @@ public class MemberHandler {
     System.out.println("저장하였습니다.");
   }
 
+  public void listMember() {
+    Member[] arr = this.memberList.toArray(new Member[] {});
+    for (Member m : arr) {
+      System.out.printf("%d, %s, %s, %s, %s\n", 
+          m.getNo(), m.getName(), m.getEmail(), 
+          m.getTel(), m.getRegisteredDate());
+    }
+  }
 
   public void detailMember() {
     int index = indexOfMember(prompt.inputInt("번호 ? "));

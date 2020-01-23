@@ -2,19 +2,20 @@ package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import com.moonsolid.sc.domain.Board;
-import com.moonsolid.sc.util.LinkedList;
+import com.moonsolid.sc.util.AbstractList;
+import com.moonsolid.sc.util.List;
 import com.moonsolid.sc.util.Prompt;
 
 public class BoardHandler {
 
-  LinkedList<Board> boardList;
+  List<Board> boardList;
 
 
   Prompt prompt;
   
-  public BoardHandler(Prompt prompt) {
+  public BoardHandler(Prompt prompt, List<Board> list) {
     this.prompt = prompt;
-    this.boardList = new LinkedList<>();
+    this.boardList = list;
   }
 
    public void listBoard() {
@@ -43,13 +44,13 @@ public class BoardHandler {
 
   public void detailBoard() {
     int index = indexOfBoard(prompt.inputInt("번호? "));
-
+    
     if (index == -1) {
-      System.out.println("게시물 인덱스가 유효하지 않습니다.");
+      System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
     
-    Board board = (Board) this.boardList.get(index);
+    Board board = this.boardList.get(index);
     System.out.printf("번호: %d\n", board.getNo());
     System.out.printf("제목: %s\n", board.getTitle());
     System.out.printf("등록일: %s\n", board.getDate());
@@ -59,13 +60,14 @@ public class BoardHandler {
   public void updateBoard() {
    int index = indexOfBoard(prompt.inputInt("번호 ?"));
 
-    Board oldBoard = this.boardList.get(index);
+   if (index == -1) {
+     System.out.println("해당 번호의 게시글이 없습니다.");
+     return;
+   }
 
-    if (index == -1) {
-      System.out.println("해당 번호의 게시글이 없습니다..");
-      return;
-    }
-    Board newBoard = new Board();
+   Board oldBoard = this.boardList.get(index);
+   Board newBoard = new Board();
+  
     
     newBoard.setNo(oldBoard.getNo());
     newBoard.setViewCount(oldBoard.getViewCount());
@@ -83,7 +85,6 @@ public class BoardHandler {
 
 
     this.boardList.set(index, newBoard);
-
     System.out.println("게시글을 변경했습니다.");
   }
 
