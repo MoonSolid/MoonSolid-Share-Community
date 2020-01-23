@@ -2,7 +2,7 @@ package com.moonsolid.sc.util;
 
 import java.util.Arrays;
 
-public class Stack<E> {
+public class Stack<E> implements Cloneable {
 
   private static final int DEFAULT_CAPACITY = 10;
 
