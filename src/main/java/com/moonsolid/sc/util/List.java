@@ -2,9 +2,9 @@ package com.moonsolid.sc.util;
 
 public interface List<E> {
 
-  public abstract void add(E e);
+    void add(E e);
   
-  public void add(int index, E value);
+   void add(int index, E value);
   
   E get (int index);
   
@@ -17,5 +17,7 @@ public interface List<E> {
   E[] toArray(E[] arr);
   
   int size();
+  
+  Iterator<E> iterator();
   
 }

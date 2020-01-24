@@ -1,4 +1,4 @@
-package com.moonsolid.sc;
+package com.moonsoid.sc;
 
 import java.util.Scanner;
 import com.moonsolid.sc.domain.Board;
@@ -8,24 +8,24 @@ import com.moonsolid.sc.handler.BoardHandler;
 import com.moonsolid.sc.handler.LessonHandler;
 import com.moonsolid.sc.handler.MemberHandler;
 import com.moonsolid.sc.util.ArrayList;
+import com.moonsolid.sc.util.Iterator;
 import com.moonsolid.sc.util.LinkedList;
 import com.moonsolid.sc.util.Prompt;
 import com.moonsolid.sc.util.Queue;
 import com.moonsolid.sc.util.Stack;
 
 public class App {
-
+  
   static Scanner keyboard = new Scanner(System.in);
   
   static Stack<String> commandStack = new Stack<>();
   static Queue<String> commandQueue = new Queue<>();
   
-
   public static void main(String[] args) {
     
     Prompt prompt = new Prompt(keyboard);
     
-    LinkedList<Board> boardList = new LinkedList<>();
+    LinkedList<Board> boardList = new LinkedList<>(); // 컴파일 오류!
     BoardHandler boardHandler = new BoardHandler(prompt, boardList);
     
     ArrayList<Lesson> lessonList = new ArrayList<>();
@@ -34,7 +34,6 @@ public class App {
     LinkedList<Member> memberList = new LinkedList<>();
     MemberHandler memberHandler = new MemberHandler(prompt, memberList);
     
-
     String command;
     
     do {
@@ -44,8 +43,9 @@ public class App {
       if (command.length() == 0)
         continue;
       
-       commandStack.push(command);
-       commandQueue.offer(command);
+      commandStack.push(command);
+      
+      commandQueue.offer(command);
       
       switch (command) {
         case "/lesson/add":
@@ -62,7 +62,7 @@ public class App {
           break;
         case "/lesson/delete":
           lessonHandler.deleteLesson();
-            break;
+          break;
         case "/member/add":
           memberHandler.addMember();
           break;
@@ -77,7 +77,7 @@ public class App {
           break;
         case "/member/delete":
           memberHandler.deleteMember();
-            break;
+          break;
         case "/board/add":
           boardHandler.addBoard();
           break;
@@ -86,18 +86,18 @@ public class App {
           break;
         case "/board/detail":
           boardHandler.detailBoard();
-          break;
+          break;  
         case "/board/update":
           boardHandler.updateBoard();
-          break;
+          break; 
         case "/board/delete":
           boardHandler.deleteBoard();
-            break;
+          break; 
         case "history":
-          printCommandHistory();
+          printCommandHistory(commandStack.iterator());
           break;
         case "history2":
-          printCommandHistory2();
+          printCommandHistory(commandQueue.iterator());
           break;
         default:
           if (!command.equalsIgnoreCase("quit")) {
@@ -112,29 +112,10 @@ public class App {
     keyboard.close();
   }
   
-  
-  private static void printCommandHistory2() {
-    Queue<String> historyQueue = commandQueue.clone();
+  private static void printCommandHistory(Iterator<String> iterator) {
     int count = 0;
-
-    while (historyQueue.size() > 0) {
-      System.out.println(historyQueue.poll());
-      
-      if ((++count % 5) == 0) {
-        System.out.print(":");
-        String str = keyboard.nextLine();
-        if (str.equalsIgnoreCase("q")) {
-          break;
-        }
-      }
-    }
-  }
-  
-  private static void printCommandHistory() {
-    Stack<String> historyStack = commandStack.clone();
-    int count = 0;
-    while (!historyStack.empty()) {
-      System.out.println(historyStack.pop());
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
       count++;
       
       if ((count % 5) == 0) {
