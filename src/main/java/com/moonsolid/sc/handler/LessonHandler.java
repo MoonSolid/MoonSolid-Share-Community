@@ -34,10 +34,8 @@ public class LessonHandler {
   
   public void listLesson() {
    
-    // 컬렉션에서 값을 꺼내는 일을 해 줄 Iterator 준비하기
     Iterator<Lesson> iterator = lessonList.iterator();
     
-    // Iterator 객체를 통해 LessonList에 보관되어 있는 값을 꺼낸다.
     while (iterator.hasNext()) {
       Lesson l = iterator.next();
       System.out.printf("%d, %s, %s ~ %s, %d\n",
@@ -100,12 +98,6 @@ public class LessonHandler {
         String.format("일수업시간(%d)? ", oldLesson.getDayHours()), 
         oldLesson.getDayHours()));
     
-    /*
-    int oldValue = oldLesson.getDayHours();
-    String label = "일수업시간(" + oldValue + ")? ";
-    int newValue = inputInt(label, oldValue);
-    newLesson.setDayHours(newValue);
-    */
     
     if (oldLesson.equals(newLesson)) {
       System.out.println("수업 변경을 취소하였습니다.");

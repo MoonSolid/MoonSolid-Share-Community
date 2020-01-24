@@ -1,6 +1,5 @@
 // listBoard() 메서드 변경
-// => toArray()의 리턴 값을 사용하는 대신 iterator()의 리턴 값을 사용하여 목록 출력. 
-package com.eomcs.lms.handler;
+package com.moonsolid.sc.handler;
 
 import java.sql.Date;
 import com.moonsolid.sc.domain.Board;
@@ -20,13 +19,10 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    // BoardList 에게 값을 꺼내는 일을 해줄 Iterator 객체을 달라고 한다.
     Iterator<Board> iterator = boardList.iterator();
     
-    // Iterator 객체에게 목록에서 꺼낼 값이 있는지 물어본다. 
     while (iterator.hasNext()) {
       
-      // 값이 있다고 한다면, 그 값을 꺼내 달라고 요청한다.
       Board b = iterator.next();
       
       System.out.printf("%d, %s, %s, %d\n", 
