@@ -1,9 +1,9 @@
 package com.moonsolid.sc.handler;
 
 import java.sql.Date;
+import java.util.Iterator;
+import java.util.List;
 import com.moonsolid.sc.domain.Member;
-import com.moonsolid.sc.util.Iterator;
-import com.moonsolid.sc.util.List;
 import com.moonsolid.sc.util.Prompt;
 
 public class MemberHandler {

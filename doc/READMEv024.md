@@ -1,12 +1,13 @@
 # 24_1 - `Iterator` 디자인 패턴의 활용
 
-## 학습 목표
+## 
 
-- `Iterator` 디자인 패턴의 용도를 이해하고 활용할 수 있다.
-- 자료구조와 상관없이 일관된 방법으로 데이터를 조회할 수 있다.
+- `Iterator` 디자인 패턴 활용
+
+- 자료구조와 상관없이 일관된 방법으로 데이터를 조회.
 
 
-## 실습 소스 및 결과
+## 
 
 - src/main/java/com/eomcs/util/Iterator.java 추가
 - src/main/java/com/eomcs/util/ListIterator.java 추가
@@ -21,7 +22,7 @@
 - src/main/java/com/eomcs/util/Queue.java 변경
 - src/main/java/com/eomcs/lms/App.java 변경
 
-## 실습
+## 핸들러랑 App변경하기
 
 ### 훈련1. Stack 이나 Queue, List 에서 값을 꺼내는 방법을 통일하라.
 
@@ -62,7 +63,7 @@
     - `Iterator` 구현체를 리턴하는 iterator() 를 정의한다.
 
 ### 훈련7. Queue 객체에 들어 있는 값을 꺼내 줄 Iterator 구현체를 준비하고 리턴한다.
-    
+
 - QueueIterator.java 생성
   - Iterator 인터페이스를 구현한다.
 - Queue.java 변경

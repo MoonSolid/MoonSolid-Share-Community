@@ -1,8 +1,8 @@
 package com.moonsolid.sc.handler;
 
+import java.util.Iterator;
+import java.util.List;
 import com.moonsolid.sc.domain.Lesson;
-import com.moonsolid.sc.util.Iterator;
-import com.moonsolid.sc.util.List;
 import com.moonsolid.sc.util.Prompt;
 
 public class LessonHandler {

@@ -1,31 +1,31 @@
-package com.moonsoid.sc;
+package com.moonsolid.sc;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 import com.moonsolid.sc.domain.Board;
 import com.moonsolid.sc.domain.Lesson;
 import com.moonsolid.sc.domain.Member;
 import com.moonsolid.sc.handler.BoardHandler;
 import com.moonsolid.sc.handler.LessonHandler;
 import com.moonsolid.sc.handler.MemberHandler;
-import com.moonsolid.sc.util.ArrayList;
-import com.moonsolid.sc.util.Iterator;
-import com.moonsolid.sc.util.LinkedList;
 import com.moonsolid.sc.util.Prompt;
-import com.moonsolid.sc.util.Queue;
-import com.moonsolid.sc.util.Stack;
 
 public class App {
   
   static Scanner keyboard = new Scanner(System.in);
   
   static Stack<String> commandStack = new Stack<>();
-  static Queue<String> commandQueue = new Queue<>();
+  static Queue<String> commandQueue = new LinkedList<>();
   
   public static void main(String[] args) {
     
     Prompt prompt = new Prompt(keyboard);
     
-    LinkedList<Board> boardList = new LinkedList<>(); // 컴파일 오류!
+    LinkedList<Board> boardList = new LinkedList<>(); 
     BoardHandler boardHandler = new BoardHandler(prompt, boardList);
     
     ArrayList<Lesson> lessonList = new ArrayList<>();
