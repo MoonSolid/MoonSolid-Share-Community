@@ -1,5 +1,11 @@
 package com.moonsolid.sc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -31,51 +37,58 @@ import com.moonsolid.sc.handler.MemberUpdateCommand;
 import com.moonsolid.sc.util.Prompt;
 
 public class App {
-  
+
   static Scanner keyboard = new Scanner(System.in);
-  
+
   static Deque<String> commandStack = new ArrayDeque<>();
   static Queue<String> commandQueue = new LinkedList<>();
-  
+
+  static LinkedList<Board> boardList = new LinkedList<>(); 
+  static ArrayList<Lesson> lessonList = new ArrayList<>();
+  static LinkedList<Member> memberList = new LinkedList<>();
+
+
+
   public static void main(String[] args) {
-    
+
+    loadLessonData();
+    loadMemberData();
+    loadBoardData();
+
     Prompt prompt = new Prompt(keyboard);
     HashMap<String, Command> commandMap = new HashMap<>();
-    
-    LinkedList<Board> boardList = new LinkedList<>(); 
+
     commandMap.put("/board/add",new BoardAddCommand(prompt,boardList));
     commandMap.put("/board/list",new BoardListCommand(boardList)) ;
     commandMap.put("/board/detail",new BoardDetailCommand(prompt,boardList));
     commandMap.put("/board/delete",new BoardDeleteCommand(prompt,boardList));    
     commandMap.put("/board/update",new BoardUpdateCommand(prompt,boardList));
-    
-    ArrayList<Lesson> lessonList = new ArrayList<>();
+
     commandMap.put("/lesson/add",new LessonAddCommand(prompt,lessonList));
     commandMap.put("/lesson/list",new LessonListCommand(lessonList));
     commandMap.put("/lesson/detail",new LessonDetailCommand(prompt,lessonList));
     commandMap.put("/lesson/delete",new LessonDeleteCommand(prompt,lessonList));
     commandMap.put("/lesson/update",new LessonUpdateCommand(prompt,lessonList));
-    
-    
-    LinkedList<Member> memberList = new LinkedList<>();
+
+
     commandMap.put("/member/add",new MemberAddCommand(prompt,memberList));
     commandMap.put("/member/list",new MemberListCommand(memberList));
     commandMap.put("/member/detail",new MemberDetailCommand(prompt,memberList));
     commandMap.put("/member/delete",new MemberDeleteCommand(prompt,memberList));
     commandMap.put("/member/update",new MemberUpdateCommand(prompt,memberList));
-    
+
     commandMap.put("/hello", new HelloCommand(prompt));
-    
+
     String command;
-    
+
     while (true) {
       System.out.print("\n명령> ");
       command = keyboard.nextLine();
-      
+
       if (command.length() == 0)
         continue;
-      
-      
+
+
       if (command.equals("quit")) {
         System.out.println("안녕");
         break;
@@ -86,11 +99,11 @@ public class App {
         printCommandHistory(commandQueue.iterator());
         continue;
       } 
-      
+
       commandStack.push(command);
-      
+
       commandQueue.offer(command);
-      
+
       Command commandHandler = commandMap.get(command);      
 
       if (commandHandler != null) {
@@ -103,16 +116,20 @@ public class App {
         System.out.println("실행할 수 없는 명령입니다.");
       }
     }        
-    
+
     keyboard.close();
+
+    saveLessonData();
+    saveMemberData();
+    saveBoardData();
   }
-  
+
   private static void printCommandHistory(Iterator<String> iterator) {
     int count = 0;
     while (iterator.hasNext()) {
       System.out.println(iterator.next());
       count++;
-      
+
       if ((count % 5) == 0) {
         System.out.print(":");
         String str = keyboard.nextLine();
@@ -122,8 +139,216 @@ public class App {
       }
     }
   }
-  
+
+  private static void loadLessonData() {
+    File file = new File("./lesson.csv");
+
+    FileReader in = null;
+    Scanner dataScan = null;
+
+    try {
+      in = new FileReader(file);
+
+      dataScan = new Scanner(in);
+      int count = 0;
+
+      while(true) {
+
+        try {
+
+          lessonList.add(Lesson.valueOf(dataScan.nextLine()));
+          count++;
+
+
+        } catch (Exception e) {
+          break;
+        }
+      }
+      System.out.printf("총 %d 개의 수업 데이터를 로딩했습니다.\n",count);        
+
+    } catch (FileNotFoundException e) {
+      System.out.println("파일 읽기 중 오류 발생! - " + e.getMessage());
+    } finally {
+
+      try {
+        dataScan.close();
+      } catch (Exception e) {
+
+      }
+      try {
+        in.close();
+      } catch (Exception e) {
+      }
+    }
+  }
+
+  private static void saveLessonData() {
+    File file = new File("./lesson.csv");
+
+    FileWriter out = null;
+
+    try {
+      out = new FileWriter(file);
+      int count = 0;
+
+      for (Lesson lesson : lessonList) {
+
+        out.write(lesson.toCsvString() + "\n");
+
+        count++;
+      }
+      System.out.printf("총 %d개의 수업 데이터를 저장했습니다\n", count);
+    } catch (IOException e) {
+      System.out.println("파일 쓰기중 오류 발생! - " + e.getMessage());
+    } finally {
+      try {
+        out.close();
+      } catch (IOException e) {
+
+      }
+    }
+  }
+
+  private static void loadMemberData() {
+    File file = new File("./member.csv");
+
+    FileReader in = null;
+    Scanner dataScan = null;
+
+    try {
+      in =new FileReader(file);
+      dataScan = new Scanner(in);
+      int count = 0;
+
+      while(true) {
+        try {
+          
+          memberList.add(Member.valueOf(dataScan.nextLine()));
+          count++;
+
+
+        } catch (Exception e) {
+          break;
+        }
+      }
+      System.out.printf("총 %d 개의 회원 데이터를 로딩했습니다.\n",count);
+    } catch (FileNotFoundException e) {
+      System.out.println("파일 읽기 중 오류 발생! -" + e.getMessage());
+    } finally {
+      try {
+        dataScan.close();
+      } catch (Exception e) {
+
+      }
+      try {
+        in.close();
+      } catch (Exception e) {
+
+      }
+    }
+  }
+
+  private static void saveMemberData() {
+
+    File file = new File("./member.csv");
+
+    FileWriter out = null;
+
+    try {
+      out = new FileWriter(file);
+      int count = 0;
+
+      for(Member member : memberList) {
+       
+        out.write(member.toCsvString() + "\n");
+        count++;
+      }
+      System.out.printf("총 %개의 회원 데이터를 저장했습니다. \n",count);
+
+    } catch (IOException e) {
+      System.out.println("파일 쓰기 중 오류 발생! -" + e.getMessage());
+
+    } finally {
+      try {
+        out.close();
+      } catch (IOException e) {
+
+      }
+    }
+  }
+
+  private static void loadBoardData() {
+    File file = new File("./board.csv");
+
+    FileReader in = null;
+    Scanner dataScan = null;
+
+    try {
+      in = new FileReader(file);
+      dataScan = new Scanner(in);
+      int count = 0;
+
+      while(true) {
+        try {
+
+       boardList.add(Board.valueOf(dataScan.nextLine()));
+        
+       count++;
+      } catch(Exception e) {
+        break;
+      }    
+    }
+    System.out.printf("총 %d 개의 게시글 데이터를 로딩했습니다.\n ",count);
+    
+  } catch (FileNotFoundException e) {
+    System.out.println("파일 읽기 중 오류 발생! - " + e.getMessage());
+    
+  } finally {
+    
+    try {
+      dataScan.close();
+    } catch (Exception e) {
+
+    }
+    try {
+      in.close();
+    } catch (Exception e) {
+
+    }
+  }
 }
+
+private static void saveBoardData() {
+  File file = new File("./board.csv");
+  
+  FileWriter out = null;
+  
+  try {
+    out = new FileWriter(file);
+    int count=0;
+    
+    for(Board board : boardList) {
+
+      
+      out.write(board.toCsvString() + "\n");
+      count++;
+    }
+    System.out.printf("총 %d 개의 게시글 데이터를 저장했습니다.\n",count);
+  } catch(IOException e) {
+    System.out.println("파일 쓰기중 오류 발생! -" + e.getMessage());
+  } finally {
+    try {
+      out.close();
+    } catch(IOException e) {
+      
+    }
+  }
+}
+  
+
+}
+
+
 
 
 
