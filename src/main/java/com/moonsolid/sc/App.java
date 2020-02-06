@@ -2,27 +2,24 @@ package com.moonsolid.sc;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
-import com.google.gson.Gson;
+import java.util.Set;
+import com.moonsolid.sc.context.ApplicationContextListener;
 import com.moonsolid.sc.domain.Board;
 import com.moonsolid.sc.domain.Lesson;
 import com.moonsolid.sc.domain.Member;
@@ -47,19 +44,41 @@ import com.moonsolid.sc.util.Prompt;
 
 public class App {
 
-  static Scanner keyboard = new Scanner(System.in);
+   Scanner keyboard = new Scanner(System.in);
 
-  static Deque<String> commandStack = new ArrayDeque<>();
-  static Queue<String> commandQueue = new LinkedList<>();
+   Deque<String> commandStack = new ArrayDeque<>();
+   Queue<String> commandQueue = new LinkedList<>();
 
-  static List<Board> boardList = new ArrayList<>(); 
-  static List<Lesson> lessonList = new ArrayList<>();
-  static List<Member> memberList = new ArrayList<>();
+   List<Board> boardList = new ArrayList<>(); 
+   List<Lesson> lessonList = new ArrayList<>();
+   List<Member> memberList = new ArrayList<>();
 
+   Set<ApplicationContextListener> listeners = new HashSet<>();
 
+   public void addlicationContextListener(ApplicationContextListener listener) {
+     listeners.add(listener);
+   }
+   
+   public void removeApplicationContextListener(ApplicationContextListener listener) {
+     listeners.remove(listener);
+   }
+   
+   private void notifyApplicationInitialized() {
+     for (ApplicationContextListener listener : listeners) {
+       listener.contextInitialized();
+     }
+   }
+   
+   private void notifyApplicationDestroyed() {
+     for (ApplicationContextListener listener : listeners) {
+       listener.contextDestroyed();
+     }
+   }
+  
+  public void service() {
 
-  public static void main(String[] args) {
-
+    notifyApplicationInitialized();
+    
     loadLessonData();
     loadMemberData();
     loadBoardData();
@@ -110,7 +129,6 @@ public class App {
       } 
 
       commandStack.push(command);
-
       commandQueue.offer(command);
 
       Command commandHandler = commandMap.get(command);      
@@ -131,9 +149,12 @@ public class App {
     saveLessonData();
     saveMemberData();
     saveBoardData();
+    
+    notifyApplicationDestroyed();
+    
   }
 
-  private static void printCommandHistory(Iterator<String> iterator) {
+  private void printCommandHistory(Iterator<String> iterator) {
     int count = 0;
     while (iterator.hasNext()) {
       System.out.println(iterator.next());
@@ -148,9 +169,10 @@ public class App {
       }
     }
   }
+  
 
   @SuppressWarnings("unchecked")
-  private static void loadLessonData() {
+  private void loadLessonData() {
     File file = new File("./lesson.ser");
 
 
@@ -164,7 +186,7 @@ public class App {
     } 
   }
 
-  private static void saveLessonData() {
+  private void saveLessonData() {
     File file = new File("./lesson.ser");
 
 
@@ -178,7 +200,7 @@ public class App {
   }
 
   @SuppressWarnings("unchecked")
-  private static void loadMemberData() {
+  private void loadMemberData() {
     File file = new File("./member.ser");
 
     try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
@@ -190,7 +212,7 @@ public class App {
     }
   }
 
-  private static void saveMemberData() {
+  private void saveMemberData() {
     File file = new File("./member.ser");
 
 
@@ -204,7 +226,7 @@ public class App {
   }
 
   @SuppressWarnings("unchecked")
-  private static void loadBoardData() {
+  private void loadBoardData() {
     File file = new File("./board.ser");
 
     try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
@@ -216,7 +238,7 @@ public class App {
     }
   }
 
-  private static void saveBoardData() {
+  private void saveBoardData() {
     File file = new File("./board.ser");
 
     try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
@@ -226,6 +248,14 @@ public class App {
       System.out.println("파일 쓰기중 오류 발생! -" + e.getMessage());
     } 
   }
+  
+  
+  
+  public static void main(String[] args) {
+    App app = new App();
+    app.service();
+  }
+  
 }
 
 
