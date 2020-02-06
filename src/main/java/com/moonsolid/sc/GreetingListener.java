@@ -3,7 +3,7 @@ package com.moonsolid.sc;
 import java.util.Map;
 import com.moonsolid.sc.context.ApplicationContextListener;
 
-public class GreetingLIstener implements ApplicationContextListener {
+public class GreetingListener implements ApplicationContextListener {
 
   @Override
   public void contextInitialized(Map<String, Object> context) {
