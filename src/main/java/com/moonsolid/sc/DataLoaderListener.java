@@ -55,7 +55,7 @@ public class DataLoaderListener implements ApplicationContextListener {
     try (ObjectInputStream in =
         new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
       lessonList = (List<Lesson>) in.readObject();
-      System.out.printf("총 %d 개의 수업 데이터를 로딩했습니다.\n",lessonList.size());        
+      System.out.printf("총 %d개의 수업 데이터를 로딩했습니다.\n",lessonList.size());        
 
     } catch (Exception e) {
       System.out.println("파일 읽기 중 오류 발생! - " + e.getMessage());
@@ -79,9 +79,10 @@ public class DataLoaderListener implements ApplicationContextListener {
   private void loadMemberData() {
     File file = new File("./member.ser");
 
-    try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
+    try (ObjectInputStream in =
+        new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
       memberList = (List<Member>) in.readObject();
-      System.out.printf("총 %d 개의 회원 데이터를 로딩했습니다.\n",memberList.size());
+      System.out.printf("총 %d개의 회원 데이터를 로딩했습니다.\n",memberList.size());
 
     } catch (Exception e) {
       System.out.println("파일 읽기 중 오류 발생! -" + e.getMessage());
@@ -90,11 +91,10 @@ public class DataLoaderListener implements ApplicationContextListener {
 
   private void saveMemberData() {
     File file = new File("./member.ser");
-
-
-    try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+    try (ObjectOutputStream out =
+        new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
       out.writeObject(memberList);
-      System.out.printf("총 %개의 회원 데이터를 저장했습니다. \n",memberList.size());
+      System.out.printf("총 %d개의 회원 데이터를 저장했습니다. \n",memberList.size());
 
     } catch (IOException e) {
       System.out.println("파일 쓰기 중 오류 발생! -" + e.getMessage());
@@ -105,9 +105,10 @@ public class DataLoaderListener implements ApplicationContextListener {
   private void loadBoardData() {
     File file = new File("./board.ser");
 
-    try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
+    try (ObjectInputStream in =
+        new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
       boardList = (List<Board>) in.readObject();
-      System.out.printf("총 %d 개의 게시글 데이터를 로딩했습니다.\n ",boardList.size());
+      System.out.printf("총 %d개의 게시글 데이터를 로딩했습니다.\n ",boardList.size());
 
     } catch (Exception e) {
       System.out.println("파일 읽기 중 오류 발생! - " + e.getMessage());
@@ -117,9 +118,10 @@ public class DataLoaderListener implements ApplicationContextListener {
   private void saveBoardData() {
     File file = new File("./board.ser");
 
-    try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
-      out.writeObject(boardList);;
-      System.out.printf("총 %d 개의 게시글 데이터를 저장했습니다.\n",boardList.size());
+    try (ObjectOutputStream out =
+        new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+      out.writeObject(boardList);
+      System.out.printf("총 %d개의 게시글 데이터를 저장했습니다.\n",boardList.size());
     } catch(IOException e) {
       System.out.println("파일 쓰기중 오류 발생! -" + e.getMessage());
     } 
